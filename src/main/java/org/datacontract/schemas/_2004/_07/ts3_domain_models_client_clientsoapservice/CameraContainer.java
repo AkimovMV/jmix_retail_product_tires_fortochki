@@ -1,0 +1,431 @@
+
+package org.datacontract.schemas._2004._07.ts3_domain_models_client_clientsoapservice;
+
+import java.math.BigDecimal;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementRef;
+import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for CameraContainer complex type</p>.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
+ * 
+ * <pre>{@code
+ * <complexType name="CameraContainer">
+ *   <complexContent>
+ *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       <sequence>
+ *         <element name="brand" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="diameter" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
+ *         <element name="diameter2" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
+ *         <element name="img_big" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="img_big_my" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="img_big_pish" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="img_small" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="model" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="sub_type_id" type="{http://www.w3.org/2001/XMLSchema}unsignedByte" minOccurs="0"/>
+ *         <element name="sub_type_name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="volume" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
+ *         <element name="weight" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
+ *       </sequence>
+ *     </restriction>
+ *   </complexContent>
+ * </complexType>
+ * }</pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "CameraContainer", propOrder = {
+    "brand",
+    "code",
+    "diameter",
+    "diameter2",
+    "imgBig",
+    "imgBigMy",
+    "imgBigPish",
+    "imgSmall",
+    "model",
+    "name",
+    "subTypeId",
+    "subTypeName",
+    "volume",
+    "weight"
+})
+public class CameraContainer {
+
+    @XmlElementRef(name = "brand", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> brand;
+    @XmlElementRef(name = "code", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> code;
+    @XmlElementRef(name = "diameter", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<BigDecimal> diameter;
+    @XmlElementRef(name = "diameter2", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<BigDecimal> diameter2;
+    @XmlElementRef(name = "img_big", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> imgBig;
+    @XmlElementRef(name = "img_big_my", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> imgBigMy;
+    @XmlElementRef(name = "img_big_pish", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> imgBigPish;
+    @XmlElementRef(name = "img_small", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> imgSmall;
+    @XmlElementRef(name = "model", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> model;
+    @XmlElementRef(name = "name", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> name;
+    @XmlElement(name = "sub_type_id")
+    @XmlSchemaType(name = "unsignedByte")
+    protected Short subTypeId;
+    @XmlElementRef(name = "sub_type_name", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> subTypeName;
+    @XmlElementRef(name = "volume", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<BigDecimal> volume;
+    @XmlElementRef(name = "weight", namespace = "http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SearchProductsDetailedInfo", type = JAXBElement.class, required = false)
+    protected JAXBElement<BigDecimal> weight;
+
+    /**
+     * Gets the value of the brand property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getBrand() {
+        return brand;
+    }
+
+    /**
+     * Sets the value of the brand property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setBrand(JAXBElement<String> value) {
+        this.brand = value;
+    }
+
+    /**
+     * Gets the value of the code property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getCode() {
+        return code;
+    }
+
+    /**
+     * Sets the value of the code property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setCode(JAXBElement<String> value) {
+        this.code = value;
+    }
+
+    /**
+     * Gets the value of the diameter property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public JAXBElement<BigDecimal> getDiameter() {
+        return diameter;
+    }
+
+    /**
+     * Sets the value of the diameter property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public void setDiameter(JAXBElement<BigDecimal> value) {
+        this.diameter = value;
+    }
+
+    /**
+     * Gets the value of the diameter2 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public JAXBElement<BigDecimal> getDiameter2() {
+        return diameter2;
+    }
+
+    /**
+     * Sets the value of the diameter2 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public void setDiameter2(JAXBElement<BigDecimal> value) {
+        this.diameter2 = value;
+    }
+
+    /**
+     * Gets the value of the imgBig property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getImgBig() {
+        return imgBig;
+    }
+
+    /**
+     * Sets the value of the imgBig property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setImgBig(JAXBElement<String> value) {
+        this.imgBig = value;
+    }
+
+    /**
+     * Gets the value of the imgBigMy property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getImgBigMy() {
+        return imgBigMy;
+    }
+
+    /**
+     * Sets the value of the imgBigMy property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setImgBigMy(JAXBElement<String> value) {
+        this.imgBigMy = value;
+    }
+
+    /**
+     * Gets the value of the imgBigPish property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getImgBigPish() {
+        return imgBigPish;
+    }
+
+    /**
+     * Sets the value of the imgBigPish property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setImgBigPish(JAXBElement<String> value) {
+        this.imgBigPish = value;
+    }
+
+    /**
+     * Gets the value of the imgSmall property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getImgSmall() {
+        return imgSmall;
+    }
+
+    /**
+     * Sets the value of the imgSmall property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setImgSmall(JAXBElement<String> value) {
+        this.imgSmall = value;
+    }
+
+    /**
+     * Gets the value of the model property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getModel() {
+        return model;
+    }
+
+    /**
+     * Sets the value of the model property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setModel(JAXBElement<String> value) {
+        this.model = value;
+    }
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getName() {
+        return name;
+    }
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setName(JAXBElement<String> value) {
+        this.name = value;
+    }
+
+    /**
+     * Gets the value of the subTypeId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Short }
+     *     
+     */
+    public Short getSubTypeId() {
+        return subTypeId;
+    }
+
+    /**
+     * Sets the value of the subTypeId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Short }
+     *     
+     */
+    public void setSubTypeId(Short value) {
+        this.subTypeId = value;
+    }
+
+    /**
+     * Gets the value of the subTypeName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getSubTypeName() {
+        return subTypeName;
+    }
+
+    /**
+     * Sets the value of the subTypeName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setSubTypeName(JAXBElement<String> value) {
+        this.subTypeName = value;
+    }
+
+    /**
+     * Gets the value of the volume property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public JAXBElement<BigDecimal> getVolume() {
+        return volume;
+    }
+
+    /**
+     * Sets the value of the volume property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public void setVolume(JAXBElement<BigDecimal> value) {
+        this.volume = value;
+    }
+
+    /**
+     * Gets the value of the weight property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public JAXBElement<BigDecimal> getWeight() {
+        return weight;
+    }
+
+    /**
+     * Sets the value of the weight property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}
+     *     
+     */
+    public void setWeight(JAXBElement<BigDecimal> value) {
+        this.weight = value;
+    }
+
+}

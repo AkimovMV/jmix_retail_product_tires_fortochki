@@ -28,4 +28,5 @@ pnpmfile.js
 vite.generated.ts
 webpack.generated.js
 
-.DS_Store
+.DS_Stores
+application.properties
