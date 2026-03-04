@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://tireStockListView.title"
+      focusComponent="tireStocksDataGrid">
+    <data>
+        <collection id="tireStocksDc"
+                    class="com.makimov.retailproducttiresfortochki.entity.TireStock">
+            <fetchPlan extends="_base">
+                <property name="warehouse" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="tireStocksDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from TireStock e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="tireStocksDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="loadingTireStocks" text="msg://loadingTireStocks.text"/>
+            <startSlot>
+                <button id="createButton" action="tireStocksDataGrid.createAction"/>
+                <button id="editButton" action="tireStocksDataGrid.editAction"/>
+                <button id="removeButton" action="tireStocksDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="tireStocksDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="tireStocksDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="tireStocksDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="warehouse"/>
+                <column property="producerArticleId"/>
+                <column property="producer"/>
+                <column property="count"/>
+                <column property="price"/>
+                <column property="price_retail"/>
+                <column property="dateUpdate"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

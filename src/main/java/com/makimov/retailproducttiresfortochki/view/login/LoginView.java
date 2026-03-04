@@ -1,5 +1,6 @@
 package com.makimov.retailproducttiresfortochki.view.login;
 
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.AbstractLogin.LoginEvent;
 import com.vaadin.flow.component.login.LoginI18n;
@@ -12,6 +13,7 @@ import io.jmix.core.MessageTools;
 import io.jmix.core.security.AccessDeniedException;
 import io.jmix.flowui.component.loginform.JmixLoginForm;
 import io.jmix.flowui.kit.component.ComponentUtils;
+import io.jmix.flowui.kit.component.button.JmixButton;
 import io.jmix.flowui.kit.component.loginform.JmixLoginI18n;
 import io.jmix.flowui.view.*;
 import io.jmix.securityflowui.authentication.AuthDetails;
@@ -24,6 +26,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -121,5 +124,12 @@ public class LoginView extends StandardView implements LocaleChangeObserver {
         loginI18n.setErrorMessage(errorMessage);
 
         login.setI18n(loginI18n);
+    }
+
+    @Subscribe(id = "keycloackBtn", subject = "clickListener")
+    public void onKeycloackBtnClick(final ClickEvent<JmixButton> event) {
+        /*getBean(OAuth2AuthorizationRequestRedirectFilter.class)
+                .getAuthorizationRequestUri(getRequest())*/
+        UI.getCurrent().getPage().setLocation("/oauth2/authorization/keycloack");
     }
 }
