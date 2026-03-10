@@ -1,5 +1,5 @@
 plugins {
-    id 'io.jmix' version '2.7.4'
+    id 'io.jmix' version '2.7.6'
     id 'java'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
 }
@@ -8,7 +8,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'com.vaadin'
 
 jmix {
-    bomVersion = '2.7.4'
+    bomVersion = '2.7.6'
 }
 
 group = 'com.makimov'
@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.sun.xml.messaging.saaj:saaj-impl:3.0.2'
     implementation 'com.sun.xml.ws:jaxws-rt:4.0.2'
     implementation 'jakarta.xml.soap:jakarta.xml.soap-api:3.0.1'
+
+    //временно implementation 'io.jmix.oidc:jmix-oidc-starter'
 
     runtimeOnly 'org.hsqldb:hsqldb'
 

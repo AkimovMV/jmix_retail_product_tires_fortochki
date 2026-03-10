@@ -5,6 +5,8 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Date;
+
 @JmixEntity
 @Table(name = "WAREHOUSE")
 @Entity
@@ -27,7 +29,89 @@ public class Warehouse {
 
     @Column(name = "DAYS", nullable = false)
     @NotNull
-    private Integer days;
+    private Integer days = 0;
+
+    @Column(name = "DELIVERY_DAYS_ADDITIONAL")
+    private Integer deliveryDaysAdditional = 0;
+
+    @NotNull
+    @Column(name = "GET_STOCKS")
+    private Boolean getStocks = false;
+
+    @Column(name = "UPLOAD_TO_SITE")
+    private Boolean uploadToSite = false;
+
+    @Column(name = "PREPAY")
+    private Boolean prepay = false;
+
+    @Column(name = "DELIVERY_ONLY_TO_TERMINAL")
+    private Boolean deliveryOnlyToTerminal = false;
+
+    @Column(name = "DELIVERY_DAYS_TOTAL")
+    private Integer deliveryDaysTotal = 0;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATE_UPDATE")
+    private Date dateUpdate;
+
+    public Date getDateUpdate() {
+        return dateUpdate;
+    }
+
+    public void setDateUpdate(Date dateUpdate) {
+        this.dateUpdate = dateUpdate;
+    }
+
+    public Boolean getDeliveryOnlyToTerminal() {
+        return deliveryOnlyToTerminal;
+    }
+
+    public void setDeliveryOnlyToTerminal(Boolean deliveryOnlyToTerminal) {
+        this.deliveryOnlyToTerminal = deliveryOnlyToTerminal;
+    }
+
+    public Boolean getPrepay() {
+        return prepay;
+    }
+
+    public void setPrepay(Boolean prepay) {
+        this.prepay = prepay;
+    }
+
+    public Boolean getUploadToSite() {
+        return uploadToSite;
+    }
+
+    public void setUploadToSite(Boolean uploadToSite) {
+        this.uploadToSite = uploadToSite;
+    }
+
+    public Boolean getGetStocks() {
+        if (getStocks != null)
+            return getStocks;
+        return false;
+    }
+
+    public void setGetStocks(Boolean getStocks) {
+        this.getStocks = getStocks;
+    }
+
+    public Integer getDeliveryDaysTotal() {
+        return deliveryDaysTotal;
+    }
+
+    public Integer getDeliveryDaysAdditional() {
+        return deliveryDaysAdditional;
+    }
+
+    public void setDeliveryDaysAdditional(Integer deliveryDaysAdditional) {
+        this.deliveryDaysAdditional = deliveryDaysAdditional;
+        this.setDeliveryDaysTotalCustom();
+    }
+
+    private void setDeliveryDaysTotalCustom(){
+        this.deliveryDaysTotal = this.getDays()+this.getDeliveryDaysAdditional();
+    }
 
     public Integer getDays() {
         return days;
@@ -35,6 +119,7 @@ public class Warehouse {
 
     public void setDays(Integer days) {
         this.days = days;
+        this.setDeliveryDaysTotalCustom();
     }
 
     public String getName() {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://tireDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="tireDc"
+                  class="com.makimov.retailproducttiresfortochki.entity.Tire">
+            <fetchPlan extends="_base"/>
+            <loader id="tireDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="tireDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="producerArticleIdField" property="producerArticleId"/>
+            <textField id="producerField" property="producer"/>
+            <textField id="nameField" property="name"/>
+            <textField id="tireTypeField" property="tireType"/>
+            <textField id="diameterField" property="diameter"/>
+            <textField id="modelField" property="model"/>
+            <textField id="widthField" property="width"/>
+            <textField id="widthAdditionField" property="widthAddition"/>
+            <textField id="heightField" property="height"/>
+            <textField id="heightAdditionField" property="heightAddition"/>
+            <textField id="diameterOutField" property="diameterOut"/>
+            <textField id="seasonField" property="season"/>
+            <textField id="speedIndexField" property="speedIndex"/>
+            <textField id="loadIndexField" property="loadIndex"/>
+            <textField id="constructionField" property="construction"/>
+            <textField id="layerField" property="layer"/>
+            <textField id="axisField" property="axis"/>
+            <checkbox id="thornField" property="thorn"/>
+            <textField id="thornTypeField" property="thornType"/>
+            <textField id="homologationField" property="homologation"/>
+            <textField id="imageField" property="image"/>
+            <textField id="imageSmallField" property="imageSmall"/>
+            <textField id="runFlatField" property="runFlat"/>
+            <textField id="protectorTypeField" property="protectorType"/>
+            <textField id="typeOfUseTruckTireField" property="typeOfUseTruckTire"/>
+            <textField id="technologyField" property="technology"/>
+            <dateTimePicker id="dateUpdateField" property="dateUpdate"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

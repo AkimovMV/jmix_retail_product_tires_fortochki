@@ -5,6 +5,9 @@
         <item view="User.list" title="msg://com.makimov.retailproducttiresfortochki.view.user/UserListView.title"/>
         <item view="Warehouse.list"
               title="msg://com.makimov.retailproducttiresfortochki.view.warehouse/warehouseListView.title"/>
+        <item view="TireStock.list"
+              title="msg://com.makimov.retailproducttiresfortochki.view.tirestock/tireStockListView.title"/>
+        <item view="Tire.list" title="msg://com.makimov.retailproducttiresfortochki.view.tire/tireListView.title"/>
     </menu>
 
 </menu-config>

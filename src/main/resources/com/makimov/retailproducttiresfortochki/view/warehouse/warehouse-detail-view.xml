@@ -17,10 +17,6 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <hbox id="detailActions">
-            <button id="saveAndCloseButton" action="saveCloseAction"/>
-            <button id="closeButton" action="closeAction"/>
-        </hbox>
         <formLayout id="form" dataContainer="warehouseDc">
             <responsiveSteps>
                 <responsiveStep minWidth="0" columns="1"/>
@@ -30,6 +26,17 @@
             <textField id="keyField" property="key"/>
             <textField id="nameField" property="name"/>
             <textField id="daysField" property="days"/>
+            <textField id="deliveryDaysAdditionalField" property="deliveryDaysAdditional"/>
+            <checkbox id="getStocksField" property="getStocks"/>
+            <checkbox id="uploadToSiteField" property="uploadToSite"/>
+            <checkbox id="prepayField" property="prepay"/>
+            <checkbox id="deliveryOnlyToTerminalField" property="deliveryOnlyToTerminal"/>
+            <textField id="deliveryDaysTotalField" property="deliveryDaysTotal"/>
+            <dateTimePicker id="dateUpdateField" property="dateUpdate"/>
         </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
     </layout>
 </view>

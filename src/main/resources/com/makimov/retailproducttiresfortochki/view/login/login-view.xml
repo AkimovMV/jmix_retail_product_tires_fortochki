@@ -16,5 +16,14 @@
                           username="msg://loginForm.errorUsername"
                           password="msg://loginForm.errorPassword"/>
         </loginForm>
+        <h3 text="msg://com.makimov.retailproducttiresfortochki.view.login/loginForm.otherLogin" classNames="other-login-header"/>
+        <vbox classNames="login-wrapper">
+            <button id="keycloackBtn"
+                    text="Вход через Keycloak"
+                    width="100%"
+                    icon="vaadin:plug"
+                    disableOnClick="true"
+                    classNames="keycloak-style, other-login-button"/>
+        </vbox>
     </layout>
 </view>
