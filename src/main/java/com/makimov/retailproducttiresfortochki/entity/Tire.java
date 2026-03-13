@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "TIRE", indexes = {
-        @Index(name = "IDX_TIRE_UNQ", columnList = "PRODUCER, PRODUCER_ARTICLE_ID", unique = true)
+@Table(name = "TIRE", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_TIRE_UNQ", columnNames = {"PRODUCER", "PRODUCER_ARTICLE_ID"})
 })
 @Entity
 public class Tire {
@@ -49,84 +49,64 @@ public class Tire {
     @Column(name = "MODEL", length = 50)
     private String model;
 
-    @Column(name = "WIDTH", nullable = false, length = 10)
-    @NotNull
+    @Column(name = "WIDTH", length = 10)
     private String width;
 
-    @NotNull
-    @Column(name = "WIDTH_ADDITION", nullable = false, length = 10)
+    @Column(name = "WIDTH_ADDITION", length = 10)
     private String widthAddition;
 
-    @NotNull
-    @Column(name = "HEIGHT", nullable = false, length = 10)
+    @Column(name = "HEIGHT", length = 10)
     private String height;
 
-    @NotNull
-    @Column(name = "HEIGHT_ADDITION", nullable = false, length = 10)
+    @Column(name = "HEIGHT_ADDITION", length = 10)
     private String heightAddition;
 
-    @NotNull
-    @Column(name = "DIAMETER_OUT", nullable = false, length = 10)
+    @Column(name = "DIAMETER_OUT", length = 10)
     private String diameterOut;
 
-    @Column(name = "SEASON", nullable = false, length = 20)
-    @NotNull
+    @Column(name = "SEASON", length = 20)
     private String season;
 
-    @Column(name = "SPEED_INDEX", nullable = false, length = 10)
-    @NotNull
+    @Column(name = "SPEED_INDEX", length = 10)
     private String speedIndex;
 
-    @Column(name = "LOAD_INDEX", nullable = false, length = 10)
-    @NotNull
+    @Column(name = "LOAD_INDEX", length = 10)
     private String loadIndex;
 
-    @Column(name = "CONSTRUCTION", nullable = false, length = 10)
-    @NotNull
+    @Column(name = "CONSTRUCTION", length = 10)
     private String construction;
 
-    @Column(name = "LAYER", nullable = false, length = 20)
-    @NotNull
+    @Column(name = "LAYER", length = 20)
     private String layer;
 
-    @Column(name = "AXIS", nullable = false, length = 20)
-    @NotNull
+    @Column(name = "AXIS", length = 20)
     private String axis;
 
-    @Column(name = "THORN", nullable = false)
-    @NotNull
+    @Column(name = "THORN")
     private Boolean thorn = false;
 
-    @Column(name = "THORN_TYPE", nullable = false, length = 30)
-    @NotNull
+    @Column(name = "THORN_TYPE", length = 30)
     private String thornType;
 
-    @Column(name = "HOMOLOGATION", nullable = false, length = 30)
-    @NotNull
+    @Column(name = "HOMOLOGATION", length = 30)
     private String homologation;
 
-    @Column(name = "IMAGE", nullable = false, length = 300)
-    @NotNull
+    @Column(name = "IMAGE", length = 300)
     private String image;
 
-    @Column(name = "IMAGE_SMALL", nullable = false, length = 300)
-    @NotNull
+    @Column(name = "IMAGE_SMALL", length = 300)
     private String imageSmall;
 
-    @Column(name = "RUN_FLAT", nullable = false, length = 100)
-    @NotNull
+    @Column(name = "RUN_FLAT", length = 100)
     private String runFlat;
 
-    @Column(name = "PROTECTOR_TYPE", nullable = false, length = 50)
-    @NotNull
+    @Column(name = "PROTECTOR_TYPE", length = 50)
     private String protectorType;
 
-    @Column(name = "TYPE_OF_USE_TRUCK_TIRE", nullable = false, length = 50)
-    @NotNull
+    @Column(name = "TYPE_OF_USE_TRUCK_TIRE", length = 50)
     private String typeOfUseTruckTire;
 
-    @Column(name = "TECHNOLOGY", nullable = false, length = 30)
-    @NotNull
+    @Column(name = "TECHNOLOGY", length = 30)
     private String technology;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -365,4 +345,160 @@ public class Tire {
         this.id = id;
     }
 
+    private boolean areEqual(Object obj1, Object obj2) {
+        // Если оба объекта null — они равны
+        if (obj1 == null && obj2 == null) {
+            return true;
+        }
+        // Если только один из объектов null — они не равны
+        if (obj1 == null || obj2 == null) {
+            return false;
+        }
+        // В остальных случаях используем стандартный метод equals()
+        return obj1.equals(obj2);
+    }
+
+    public boolean fillBySource(TireDTO sourceElement){
+        if (sourceElement == null) {
+            return false;
+        }
+
+        boolean hasChanges = false;
+
+        if (!areEqual(this.getProducerArticleId(), sourceElement.getCode())) {
+            this.setProducerArticleId(sourceElement.getCode());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getProducer(), sourceElement.getBrand())) {
+            this.setProducer(sourceElement.getBrand());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getName(), sourceElement.getName())) {
+            this.setName(sourceElement.getName());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getTireType(), sourceElement.getType())) {
+            this.setTireType(sourceElement.getType());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getDiameter(), sourceElement.getDiameter())) {
+            this.setDiameter(sourceElement.getDiameter());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getModel(), sourceElement.getModel())) {
+            this.setModel(sourceElement.getModel());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getWidth(), sourceElement.getWidth())) {
+            this.setWidth(sourceElement.getWidth());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getWidthAddition(), sourceElement.getSubwidth())) {
+            this.setWidthAddition(sourceElement.getSubwidth());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getHeight(), sourceElement.getHeight())) {
+            this.setHeight(sourceElement.getHeight());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getHeightAddition(), sourceElement.getSubheight())) {
+            this.setHeightAddition(sourceElement.getSubheight());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getDiameterOut(), sourceElement.getDiameter_out())) {
+            this.setDiameterOut(sourceElement.getDiameter_out());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getSeason(), sourceElement.getSeason())) {
+            this.setSeason(sourceElement.getSeason());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getSpeedIndex(), sourceElement.getSpeed_index())) {
+            this.setSpeedIndex(sourceElement.getSpeed_index());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getLoadIndex(), sourceElement.getLoad_index())) {
+            this.setLoadIndex(sourceElement.getLoad_index());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getConstruction(), sourceElement.getConstr())) {
+            this.setConstruction(sourceElement.getConstr());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getLayer(), sourceElement.getSloy())) {
+            this.setLayer(sourceElement.getSloy());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getAxis(), sourceElement.getAxle())) {
+            this.setAxis(sourceElement.getAxle());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getThorn(), sourceElement.getThorn())) {
+            this.setThorn(sourceElement.getThorn());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getThornType(), sourceElement.getThorn_type())) {
+            this.setThornType(sourceElement.getThorn_type());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getHomologation(), sourceElement.getOmolog())) {
+            this.setHomologation(sourceElement.getOmolog());
+            hasChanges = true;
+        }
+
+       if (!areEqual(this.getImage(), sourceElement.getImg_big_my())) {
+            this.setImage(sourceElement.getImg_big_my());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getImageSmall(), sourceElement.getImg_small())) {
+            this.setImageSmall(sourceElement.getImg_small());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getRunFlat(), sourceElement.getPuncture())) {
+            this.setRunFlat(sourceElement.getPuncture());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getProtectorType(), sourceElement.getProtector_type())) {
+            this.setProtectorType(sourceElement.getProtector_type());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getTypeOfUseTruckTire(), sourceElement.getUse_type())) {
+            this.setTypeOfUseTruckTire(sourceElement.getUse_type());
+            hasChanges = true;
+        }
+
+        if (!areEqual(this.getTechnology(), sourceElement.getTech())) {
+            this.setTechnology(sourceElement.getTech());
+            hasChanges = true;
+        }
+
+        if (hasChanges){
+            this.setDateUpdate(new Date());
+        }
+
+        return hasChanges;
+    }
 }

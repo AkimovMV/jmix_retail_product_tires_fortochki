@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,6 +37,7 @@ public class WarehouseService {
                 }
 
             } else {
+                newElement.setDateUpdate(new Date());
                 saveContext.saving(newElement);
                 System.out.println("id  " + newElement.getId() + " внесены изменения (insert)");
             }

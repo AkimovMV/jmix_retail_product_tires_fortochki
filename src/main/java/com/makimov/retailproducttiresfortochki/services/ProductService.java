@@ -33,6 +33,9 @@ public class ProductService {
     @Autowired
     private TireStockClearService tireStockClearService;
 
+    @Autowired
+    private TireService tireService;
+
 
     @Value("${fortochki.api.login}")
     private String fortochkiLogin;
@@ -187,11 +190,115 @@ public class ProductService {
             codeList.getString().addAll(listCodes);
 
             ResultGetGoodsInfo resultGetGoodsInfo = baseClientService.getGoodsInfo(this.fortochkiLogin, this.fortochkiPassword,codeList);
-            System.out.println("fetchTiresPart result: ");
+
+            if (resultGetGoodsInfo.getError().getValue() != null) {
+                System.out.println("fetchTiresPart ERROR: " + resultGetGoodsInfo.getError().getValue().getComment().getValue());
+            } else {
+                resultGetGoodsInfo.getTyreList().getValue().getTyreContainer().forEach(tire ->{
+                    //если не указан код производителя или производитель, то такие позиции не берем
+                    if (!(tire.getCode().isNil() || tire.getBrand().isNil() || tire.getType().isNil() )) {
+                        TireDTO tireDTO = dataManager.create(TireDTO.class);
+                        tireDTO.setCode(tire.getCode().getValue());
+                        tireDTO.setName(tire.getName().getValue());
+                        tireDTO.setType(tire.getType().getValue());
+                        tireDTO.setBrand(tire.getBrand().getValue());
+                        if (!tire.getModel().isNil()){
+                            tireDTO.setModel(tire.getModel().getValue());
+                        }
+
+                        if (!tire.getDiameter().isNil()){
+                            tireDTO.setDiameter(tire.getDiameter().getValue().toString());
+                        }
+
+                        if (!tire.getDiameterOut().isNil()){
+                            tireDTO.setDiameter_out(tire.getDiameterOut().getValue().toString());
+                        }
+
+                        if (!tire.getWidth().isNil()){
+                            tireDTO.setWidth(tire.getWidth().getValue().toString());
+                        }
+
+                        if (!tire.getSubwidth().isNil()){
+                            tireDTO.setSubwidth(tire.getSubwidth().getValue().toString());
+                        }
+
+                        if (!tire.getHeight().isNil()){
+                            tireDTO.setHeight(tire.getHeight().getValue().toString());
+                        }
+
+                        if (!tire.getSubheight().isNil()){
+                            tireDTO.setSubheight(tire.getSubheight().getValue().toString());
+                        }
+
+                        if (!tire.getLoadIndex().isNil()){
+                            tireDTO.setLoad_index(tire.getLoadIndex().getValue());
+                        }
+
+                        if (!tire.getSpeedIndex().isNil()){
+                            tireDTO.setSpeed_index(tire.getSpeedIndex().getValue());
+                        }
+
+                        tireDTO.setThorn(tire.isThorn());
+
+                        if (!tire.getConstr().isNil()){
+                            tireDTO.setConstr(tire.getConstr().getValue());
+                        }
+
+                        if (!tire.getConstr().isNil()){
+                            tireDTO.setConstr(tire.getConstr().getValue());
+                        }
+
+                        if (!tire.getSloy().isNil()){
+                            tireDTO.setSloy(tire.getSloy().getValue());
+                        }
+
+                        if (!tire.getAxle().isNil()){
+                            tireDTO.setAxle(tire.getAxle().getValue());
+                        }
+
+                        if (!tire.getImgBigMy().isNil()){
+                            tireDTO.setImg_big_my(tire.getImgBigMy().getValue());
+                        }
+
+                        if (!tire.getImgSmall().isNil()){
+                            tireDTO.setImg_small(tire.getImgSmall().getValue());
+                        }
+
+                        if (!tire.getOmolog().isNil()){
+                            tireDTO.setOmolog(tire.getOmolog().getValue());
+                        }
+
+                        if (!tire.getPuncture().isNil()){
+                            tireDTO.setPuncture(tire.getPuncture().getValue());
+                        }
+
+                        if (!tire.getThornType().isNil()){
+                            tireDTO.setThorn_type(tire.getThornType().getValue());
+                        }
+
+                        if (!tire.getTech().isNil()){
+                            tireDTO.setTech(tire.getTech().getValue());
+                        }
+
+                        if (!tire.getProtectorType().isNil()){
+                            tireDTO.setProtector_type(tire.getProtectorType().getValue());
+                        }
+
+                        if (!tire.getUseType().isNil()){
+                            tireDTO.setUse_type(tire.getUseType().getValue());
+                        }
+
+                        if (!tire.getSeason().isNil()){
+                            tireDTO.setSeason(tire.getSeason().getValue());
+                        }
+
+                        result.add(tireDTO);
+                    }
+                });
+            }
         } catch (Exception e) {
             System.out.println("fetchTiresPart result: "+e.toString());
         }
-
 
         return result;
     }
@@ -201,10 +308,14 @@ public class ProductService {
 
         try {
             List<String> listCodes = this.tireStockService.getCodesWithStocks();
-            List<String[]> splitedArrays = Utils.splitArray((String[]) listCodes.toArray(),100) ;
+            List<String[]> splitedArrays = Utils.splitArray(listCodes.toArray(new String[0]),100) ;
+            int iter = 1;
+            int splitedArraysSize = splitedArrays.size();
             for (String[] chunk : splitedArrays) {
                 List<TireDTO> partResult = fetchTiresPart(Arrays.stream(chunk).toList());
                 result.addAll(partResult);
+                System.out.println("fetchTires part "+iter+" / "+splitedArraysSize);
+                iter++;
             }
 
         } catch (Exception e) {
@@ -250,9 +361,8 @@ public class ProductService {
     public void saveTiresByStocksFromWsdl() {
         LocalDateTime dateStart = LocalDateTime.now();
         System.out.println("saveTiresByStocksFromWsdl start "+ Utils.formatDateTime(dateStart));
-        this.fetchTires();
-      //  List<Warehouse> list = this.fetchTires();
-        //this.warehouseService.saveWarehouses(list);
+        List<TireDTO> list =  this.fetchTires();
+        this.tireService.saveTires(list);
 
         LocalDateTime dateEnd = LocalDateTime.now();
         System.out.println("saveTiresByStocksFromWsdl end "+ Utils.formatDateTime(dateEnd));

@@ -1,6 +1,8 @@
 package com.makimov.retailproducttiresfortochki.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -12,8 +14,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "TIRE_STOCK", indexes = {
-        @Index(name = "IDX_TIRE_STOCK_UNQ", columnList = "WAREHOUSE_ID, PRODUCER_ARTICLE_ID, PRODUCER", unique = true)
+@Table(name = "TIRE_STOCK", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_TIRE_STOCK_UNQ", columnNames = {"WAREHOUSE_ID", "PRODUCER_ARTICLE_ID", "PRODUCER"})
 })
 @Entity
 public class TireStock {
@@ -22,6 +24,7 @@ public class TireStock {
     @Id
     private UUID id;
 
+    @OnDeleteInverse(DeletePolicy.CASCADE)
     @NotNull
     @JoinColumn(name = "WAREHOUSE_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

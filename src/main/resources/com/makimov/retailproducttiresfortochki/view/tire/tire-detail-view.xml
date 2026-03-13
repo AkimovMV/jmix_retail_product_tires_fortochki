@@ -5,9 +5,20 @@
     <data>
         <instance id="tireDc"
                   class="com.makimov.retailproducttiresfortochki.entity.Tire">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+            </fetchPlan>
             <loader id="tireDl"/>
         </instance>
+        <collection id="tireStocksByTireDc"
+                    class="com.makimov.retailproducttiresfortochki.entity.TireStock">
+            <fetchPlan extends="_base">
+            </fetchPlan>
+            <loader id="tireStocksByTireDl" readOnly="true" >
+                <query>
+                    <![CDATA[select t from TireStock t where t.producerArticleId = :producerArticleId and t.producer = :producer]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -50,6 +61,17 @@
             <textField id="technologyField" property="technology"/>
             <dateTimePicker id="dateUpdateField" property="dateUpdate"/>
         </formLayout>
+        <dataGrid id="dataGrid" width="100%" minHeight="20em"
+                  dataContainer="tireStocksByTireDc">
+            <columns>
+                <column property="warehouse"/>
+                <column property="producerArticleId"/>
+                <column property="producer"/>
+                <column property="count"/>
+                <column property="price"/>
+                <column property="price_retail"/>
+            </columns>
+        </dataGrid>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>

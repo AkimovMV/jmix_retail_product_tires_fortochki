@@ -34,7 +34,6 @@ public class Warehouse {
     @Column(name = "DELIVERY_DAYS_ADDITIONAL")
     private Integer deliveryDaysAdditional = 0;
 
-    @NotNull
     @Column(name = "GET_STOCKS")
     private Boolean getStocks = false;
 
@@ -189,6 +188,10 @@ public class Warehouse {
         if (!areEqual(this.getKey(), sourceElement.getKey())) {
             this.setKey(sourceElement.getKey());
             hasChanges = true;
+        }
+
+        if (hasChanges) {
+            this.setDateUpdate(new Date());
         }
 
         return hasChanges;

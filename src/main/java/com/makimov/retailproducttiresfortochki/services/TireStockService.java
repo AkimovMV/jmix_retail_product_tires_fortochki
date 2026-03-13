@@ -16,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class TireStockService {
@@ -61,6 +58,7 @@ public class TireStockService {
             newElement.setCount(tireStockDTO.getRest());
             newElement.setPrice(tireStockDTO.getPrice());
             newElement.setPrice_retail(tireStockDTO.getPrice_rozn());
+            newElement.setDateUpdate(new Date());
             saveContext.saving(newElement);
 
             // сохранение по 100 позиций

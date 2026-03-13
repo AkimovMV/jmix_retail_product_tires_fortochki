@@ -20,47 +20,57 @@ public class TireDTO {
     @NotNull
     private String brand;
 
-    private String model;
+    private String model = "";
 
-    private String diameter;
+    private String diameter = "";
 
-    private String diameter_out;
+    private String diameter_out = "";
 
-    private String width;
+    private String season = "";
 
-    private String subwidth;
+    private String width = "";
 
-    private String height;
+    private String subwidth = "";
 
-    private String subheight;
+    private String height = "";
 
-    private String load_index;
+    private String subheight = "";
 
-    private String speed_index;
+    private String load_index = "";
 
-    private Boolean thorn;
+    private String speed_index = "";
 
-    private String constr;
+    private Boolean thorn = false;
 
-    private String sloy;
+    private String constr = "";
 
-    private String axle;
+    private String sloy = "";
 
-    private String img_big_my;
+    private String axle = "";
 
-    private String img_small;
+    private String img_big_my = "";
 
-    private String omolog;
+    private String img_small = "";
 
-    private String puncture;
+    private String omolog = "";
 
-    private String thorn_type;
+    private String puncture = "";
 
-    private String tech;
+    private String thorn_type = "";
 
-    private String protector_type;
+    private String tech = "";
 
-    private String use_type;
+    private String protector_type = "";
+
+    private String use_type = "";
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
 
     public String getUse_type() {
         return use_type;

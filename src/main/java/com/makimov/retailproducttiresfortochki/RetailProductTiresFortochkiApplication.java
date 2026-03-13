@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
 
@@ -23,6 +24,7 @@ import javax.sql.DataSource;
 @Theme(value = "retail-product-tires-fortochki")
 @PWA(name = "Retail Product Tires Fortochki", shortName = "Retail Product Tires Fortochki", offline = false)
 @SpringBootApplication
+@EnableScheduling
 public class RetailProductTiresFortochkiApplication implements AppShellConfigurator {
 
     @Autowired
